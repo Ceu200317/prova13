@@ -1,35 +1,35 @@
-function cadastro() {
-    event.preventDefault()
+function cadastro(event) {
+    event.preventDefault();
 
-    let nome = document.getElementByiD('nome').value
-    let usuario = document.getElementByid('usuario').value
-    let senha = document.getElementByid('senha').value
-    let email = document.getElementByid('email').value
-    let idade = document.getElementByid('idade').value
+    let nome = document.getElementById('nome').value;
+    let usuario = document.getElementById('usuario').value;
+    let senha = document.getElementById('senha').value;
+    let email = document.getElementById('email').value;
+    let idade = parseInt(document.getElementById('idade').value);
 
-    document.getElementById('mensagem').innerText = ""
+    document.getElementById('mensagem').innerText = "";
 
     try {
-        if (nome == "") {
-            throw "O campo nome está vazio"
+        if (nome.trim() === "") {
+            throw "O campo nome está vazio";
         }
-        if (usuario == "") {
-            throw new Error("Preencha o usuario")
+        if (usuario.trim() === "") {
+            throw "Preencha o usuário";
         }
         if (senha.length < 6) {
-            throw "A senha precisa ter 6 caracteres pelo menos"
+            throw "A senha precisa ter pelo menos 6 caracteres";
         }
-        if (email.includes("@") == false) {
-            throw "Email invalido"
+        if (!email.includes("@")) {
+            throw "Email inválido";
         }
-        if (idade < 18) {
-            throw "Você precisa ser maior de idade"
+        if (isNaN(idade) || idade < 18) {
+            throw "Você precisa ser maior de idade";
         }
 
-        alert("Cadastro realizado com sucesso")
-        document.getElementByid('formulario').reset()
+        alert("Cadastro realizado com sucesso!");
+        document.getElementById('formulario').reset();
 
-    } catch(erro) {
-        document.getElementById('mensagem').innerHTML = "Erro no cadastro: " + erro
+    } catch (erro) {
+        document.getElementById('mensagem').innerText = "Erro no cadastro: " + erro;
     }
 }
